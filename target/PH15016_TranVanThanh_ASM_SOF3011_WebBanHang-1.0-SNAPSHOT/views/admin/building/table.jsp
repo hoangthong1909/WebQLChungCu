@@ -29,11 +29,18 @@
 <table class="table table-success table-striped">
     <thead>
     <tr>
-        <th scope="col">NameBuilding</th>
-        <th scope="col">Address</th>
-        <th scope="col">Creator</th>
-        <th scope="col">DateCreate</th>
-        <th colspan="2">Manipulation</th>
+        <th scope="col">Tòa Nhà</th>
+        <th scope="col">Địa Chỉ</th>
+        <th scope="col">Người Tạo</th>
+        <th scope="col">Ngày Tạo</th>
+        <th scope="col">Phí Vệ Sinh</th>
+        <th scope="col">Phí An Ninh</th>
+        <th scope="col">Phí Chăm Sóc Cảnh Quan</th>
+        <th scope="col">Phí Hoạt Động,Bảo Dưỡng Tiện Ích Chung</th>
+        <th scope="col">Phí Thu Dọn Rác</th>
+        <th scope="col">Tổng Tiền</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -43,14 +50,20 @@
             <td>${building.address}</td>
             <td>${building.user.name}</td>
             <td><fmt:formatDate value="${building.dateCreate}" pattern="dd/MM/yyyy"/></td>
+            <td><fmt:formatNumber value="${building.toilet}" pattern="#,###"/> VND</td>
+            <td><fmt:formatNumber value="${building.security}" pattern="#,###"/> VND</td>
+            <td><fmt:formatNumber value="${building.landscapeCare}" pattern="#,###"/> VND</td>
+            <td><fmt:formatNumber value="${building.work}" pattern="#,###"/> VND</td>
+            <td><fmt:formatNumber value="${building.garbage}" pattern="#,###"/> VND</td>
+            <td style="color: red"><fmt:formatNumber value="${building.garbage+building.toilet+building.security+building.landscapeCare+building.work}" pattern="#,###"/> VND</td>
             <td>
                 <form action="editBuilding" method="post">
                     <input type="hidden" value="${building.id}" name="id">
-                    <button class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Cập Nhật</button>
                 </form>
             </td>
             <td>
-                <button data-toggle="modal" data-target="#b${building.id}" class="btn btn-danger">Delete</button>
+                <button data-toggle="modal" data-target="#b${building.id}" class="btn btn-danger">Xóa</button>
             </td>
             <div id="b${building.id}" class="modal" tabindex="-1">
                 <div class="modal-dialog">

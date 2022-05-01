@@ -26,6 +26,14 @@ public class RoomEntity {
     private Double acreage;
 
     @Basic
+    @Column(name = "bedroom")
+    private int bedroom;
+
+    @Basic
+    @Column(name = "bathroom")
+    private int bathroom;
+
+    @Basic
     @Column(name = "status")
     private boolean status;
     @ManyToOne
@@ -80,5 +88,21 @@ public class RoomEntity {
 
     public void setContractList(List<ContractEntity> contractList) {
         this.contractList = contractList;
+    }
+
+    public int getBedroom() {
+        return bedroom;
+    }
+
+    public void setBedroom(int bedroom) {
+        this.bedroom = bedroom;
+    }
+
+    public int getBathroom() {
+        return bathroom;
+    }
+
+    public void setBathroom(int bathroom) {
+        this.bathroom = bathroom;
     }
 }

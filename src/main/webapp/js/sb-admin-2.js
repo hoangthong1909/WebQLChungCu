@@ -52,5 +52,13 @@
     }, 1000, 'easeInOutExpo');
     e.preventDefault();
   });
+  document.getElementById('SelectOption').addEventListener('change', function() {
+    val = $( "#SelectOption" ).val();
+
+    console.log(val)
+    if(val === 'Home') {
+      window.open('home.php','_blank');
+    }
+  });
 
 })(jQuery); // End of use strict

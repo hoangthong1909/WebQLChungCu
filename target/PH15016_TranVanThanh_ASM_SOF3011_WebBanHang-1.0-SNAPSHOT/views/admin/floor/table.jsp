@@ -29,11 +29,12 @@
 <table class="table table-success table-striped">
     <thead>
     <tr>
-        <th scope="col">NameBuilding</th>
-        <th scope="col">NameFloor</th>
-        <th scope="col">Creator</th>
-        <th scope="col">DateCreate</th>
-        <th colspan="2">Manipulation</th>
+        <th scope="col">Tòa Nhà</th>
+        <th scope="col">Tầng</th>
+        <th scope="col">Người Tạo</th>
+        <th scope="col">Ngày Tạo</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -47,11 +48,11 @@
             <td>
                 <form action="/editFloor" method="post">
                     <input type="hidden" value="${floor.id}" name="id">
-                    <button class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Cập Nhật</button>
                 </form>
             </td>
             <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#c${floor.id}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#c${floor.id}">Xóa</button>
             </td>
             <div id="c${floor.id}" class="modal" tabindex="-1">
                 <div class="modal-dialog">

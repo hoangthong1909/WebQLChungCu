@@ -21,10 +21,10 @@
 <table class="table table-success table-striped">
     <thead>
     <tr>
-        <th scope="col">CMND</th>
-        <th scope="col">Name</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Phone</th>
+        <th scope="col">Số CMND</th>
+        <th scope="col">Họ Tên</th>
+        <th scope="col">Giới Tính</th>
+        <th scope="col">Điện Thoại</th>
         <th scope="col">Email</th>
         <th></th>
         <th></th>
@@ -35,23 +35,24 @@
         <tr>
             <td>${customer.cmnd}</td>
             <td>${customer.nameCustomer}</td>
-            <td>${customer.phone}</td>
-            <td>${customer.email}</td>
             <td>
                 <c:choose>
-                    <c:when test="${customer.sex==true}">Boy</c:when>
-                    <c:when test="${customer.sex==false}">Girl</c:when>
+                    <c:when test="${customer.sex==true}">Nam</c:when>
+                    <c:when test="${customer.sex==false}">Nữ</c:when>
                     <c:otherwise>-</c:otherwise>
                 </c:choose>
             </td>
+            <td>${customer.phone}</td>
+            <td>${customer.email}</td>
+
             <td>
                 <form action="editCustomer" method="post">
                     <input type="hidden" value="${customer.id}" name="id">
-                    <button class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Cập Nhật</button>
                 </form>
             </td>
             <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#a${customer.id}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#a${customer.id}">Xóa</button>
             </td>
             <div id="a${customer.id}" class="modal" tabindex="-1">
                 <div class="modal-dialog">
@@ -62,7 +63,7 @@
                                     aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <h5>Bạn muốn xóa KH ${customer.nameCustomer} ?</h5>
+                            <h5>Bạn muốn xóa Khách Hàng ${customer.nameCustomer} ?</h5>
                         </div>
                         <div class="modal-footer">
                             <form action="deleteCustomer" method="post">

@@ -29,10 +29,13 @@
 <table class="table table-success table-striped">
     <thead>
     <tr>
-        <th scope="col">NameFloor</th>
-        <th scope="col">NameRoom</th>
-        <th scope="col">Acreage</th>
-        <th colspan="2">Manipulation</th>
+        <th scope="col">Tầng</th>
+        <th scope="col">Căn Hộ</th>
+        <th scope="col">Diện Tích</th>
+        <th scope="col">Số Phòng Tắm</th>
+        <th scope="col">Số Phòng Ngủ</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -42,14 +45,16 @@
             <td>${room.idFloor.nameFloor}</td>
             <td>${room.nameRoom}</td>
             <td><fmt:formatNumber value="${room.acreage}" pattern="#,###"/> m<sup>2</sup></td>
+            <td>${room.bathroom}</td>
+            <td>${room.bedroom}</td>
             <td>
                 <form action="/editRoom" method="post">
                     <input type="hidden" value="${room.id}" name="id">
-                    <button class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Cập Nhật</button>
                 </form>
             </td>
             <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#c${room.id}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#c${room.id}">Xóa</button>
             </td>
             <div id="c${room.id}" class="modal" tabindex="-1">
                 <div class="modal-dialog">

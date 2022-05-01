@@ -20,6 +20,27 @@ public class BuildingEntity {
     @Basic
     @Column(name = "nameBuilding")
     private String nameBuilding;
+
+    @Basic
+    @Column(name = "toilet")
+    private Double toilet;
+
+    @Basic
+    @Column(name = "security")
+    private Double security;
+
+    @Basic
+    @Column(name = "landscapeCare")
+    private Double landscapeCare;
+
+    @Basic
+    @Column(name = "work")
+    private Double work;
+
+    @Basic
+    @Column(name = "garbage")
+    private Double garbage;
+
     @Basic
     @Column(name = "address")
     private String address;
@@ -53,6 +74,54 @@ public class BuildingEntity {
 
     public void setNameBuilding(String nameBuilding) {
         this.nameBuilding = nameBuilding;
+    }
+
+    public Double getToilet() {
+        return toilet;
+    }
+
+    public void setToilet(Double toilet) {
+        this.toilet = toilet;
+    }
+
+    public Double getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Double security) {
+        this.security = security;
+    }
+
+    public Double getLandscapeCare() {
+        return landscapeCare;
+    }
+
+    public void setLandscapeCare(Double landscapeCare) {
+        this.landscapeCare = landscapeCare;
+    }
+
+    public Double getWork() {
+        return work;
+    }
+
+    public void setWork(Double work) {
+        this.work = work;
+    }
+
+    public Double getGarbage() {
+        return garbage;
+    }
+
+    public void setGarbage(Double garbage) {
+        this.garbage = garbage;
+    }
+
+    public UsersEntity getUser() {
+        return User;
+    }
+
+    public void setUser(UsersEntity user) {
+        User = user;
     }
 
     public String getAddress() {

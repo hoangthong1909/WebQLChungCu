@@ -24,15 +24,16 @@
 <table class="table table-success table-striped">
     <thead>
     <tr>
-        <th scope="col">Avatar</th>
-        <th scope="col">Name</th>
-        <th scope="col">Address</th>
-        <th scope="col">Phone</th>
+        <th scope="col">Ảnh</th>
+        <th scope="col">Họ Tên</th>
+        <th scope="col">Địa Chỉ</th>
+        <th scope="col">Điện Thoại</th>
         <th scope="col">Email</th>
-        <th scope="col">Birthday</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Permission</th>
-        <th colspan="2">Manipulation</th>
+        <th scope="col">Ngày Sinh</th>
+        <th scope="col">Giới Tính</th>
+        <th scope="col">Quyền</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -46,8 +47,8 @@
             <td><fmt:formatDate value="${user.birthday}" pattern="dd/MM/yyyy"/></td>
             <td>
                 <c:choose>
-                    <c:when test="${user.sex==1}">Boy</c:when>
-                    <c:when test="${user.sex==0}">Girl</c:when>
+                    <c:when test="${user.sex==1}">Nam</c:when>
+                    <c:when test="${user.sex==0}">Nữ</c:when>
                     <c:otherwise>-</c:otherwise>
                 </c:choose>
             </td>
@@ -55,11 +56,11 @@
             <td>
                 <form action="edit" method="post">
                     <input type="hidden" value="${user.id}" name="id">
-                    <button class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Cập Nhật</button>
                 </form>
             </td>
             <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#a${user.id}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#a${user.id}">Xóa</button>
             </td>
             <div id="a${user.id}" class="modal" tabindex="-1">
                 <div class="modal-dialog">

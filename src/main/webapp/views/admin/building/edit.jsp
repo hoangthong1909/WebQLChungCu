@@ -21,8 +21,28 @@
         <label class="form-label fw-bold">Address</label>
         <input type="text" class="form-control" name="address" value="${building.address}">
     </div>
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Phí Vệ Sinh</label>
+        <input type="text" class="form-control" name="toilet" value="${building.toilet}">
+    </div>
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Phí An Ninh</label>
+        <input type="text" class="form-control" name="security" value="${building.security}" >
+    </div>
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Phí Chăm Sóc cảnh quan</label>
+        <input type="text" class="form-control" name="landscapeCare" value="${building.landscapeCare}">
+    </div>
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Phí Hoạt Động Bảo Dưỡng Chung</label>
+        <input type="text" class="form-control" name="work" value="${building.work}">
+    </div>
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Phí Thu Dọn Rác</label>
+        <input type="text" class="form-control" name="garbage" value="${building.garbage}">
+    </div>
     <div class="mt-3">
-        <button  class="btn btn-success">Update</button>
+        <button  class="btn btn-success">Cập Nhật</button>
         <button type="reset" class="btn btn-primary">Làm mới</button>
     </div>
 </form>

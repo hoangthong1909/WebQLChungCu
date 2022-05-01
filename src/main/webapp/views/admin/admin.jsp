@@ -60,7 +60,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="/User">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Account</span></a>
+                <span>Tài Khoản</span></a>
         </li>
 
         <!-- Divider -->
@@ -68,24 +68,24 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Building
+            Tòa Nhà
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link" href="/Building">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Building</span></a>
+                <span>Tòa Nhà</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Floor">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Floor</span></a>
+                <span>Tầng</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Room">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Room</span></a>
+                <span>Căn Hộ</span></a>
         </li>
 
         <!-- Divider -->
@@ -93,7 +93,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Contract
+            Hợp Đồng
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -102,13 +102,13 @@
         <li class="nav-item">
             <a class="nav-link" href="/Contract">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Contract</span></a>
+                <span>Hợp Đồng</span></a>
         </li>
         <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Customer
+            Khách Hàng
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -117,7 +117,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/Customer">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Customer</span></a>
+                <span>Khách Hàng</span></a>
         </li>
         </c:if>
         <c:if test="${sessionScope.user.isAdmin==0}">
@@ -125,7 +125,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Contract
+            Hợp Đồng
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -134,13 +134,13 @@
         <li class="nav-item">
             <a class="nav-link" href="/Contract">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Contract</span></a>
+                <span>Hợp Đồng</span></a>
         </li>
         <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Customer
+            Khách Hàng
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -149,7 +149,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/Customer">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Customer</span></a>
+                <span>Khách Hàng</span></a>
         </li>
         </c:if>
 
@@ -216,7 +216,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
+                                Đăng Xuất
                             </a>
                         </div>
                     </li>

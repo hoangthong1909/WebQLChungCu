@@ -117,8 +117,6 @@ public class BuildingServlet extends HttpServlet {
         BuildingEntity entity = new BuildingEntity();
         List<BuildingEntity> list = new ArrayList<>();
         List<BuildingEntity> all = this.dao.all();
-//        String s = request.getParameter("quantity");
-//        int quantity=Integer.parseInt(s);
         try {
             BeanUtils.populate(entity, request.getParameterMap());
             UsersEntity user = (UsersEntity) session.getAttribute("user");
@@ -126,21 +124,6 @@ public class BuildingServlet extends HttpServlet {
             entity.setStatus(1);
             entity.setDateCreate(new Date());
             this.dao.create(entity);
-//            System.out.println(all.size());
-//            List<FloorEntity> floorEntityList = this.foorDao.findByIDBuilding(all.size());
-//                for (int i = 1; i <= quantity; i++) {
-//                    FloorEntity floorEntity = new FloorEntity();
-//                    floorEntity.setNameFloor("Tang" + i);
-//                    floorEntity.setIdBuilding(entity);
-//                    System.out.println(quantity);
-//                    floorEntity.setStatus(true);
-//                    floorEntity.setDateCreate(new Date());
-//                    this.foorDao.create(floorEntity);
-//                    floorEntityList.add(floorEntity);
-//                    System.out.println(floorEntity);
-//                    System.out.println(floorEntityList);
-////                }
-//            }
             session.setAttribute("message", "Thêm Mới Thành Công");
             list.add(entity);
             request.setAttribute("list", list);

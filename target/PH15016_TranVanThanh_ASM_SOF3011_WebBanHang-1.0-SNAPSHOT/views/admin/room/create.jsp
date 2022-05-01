@@ -10,11 +10,11 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
 <div class="d-sm-flex align-items-center justify-content-between mb-4 offset-5">
-    <h1 class="h3 mb-0 text-gray-800">Room Management</h1>
+    <h1 class="h3 mb-0 text-gray-800">Quản Lý Căn Hộ</h1>
 </div>
 <form class=" row mt-3 ms-0 pe-0" action="storeRoom" method="post" >
     <div class="mb-3 col-6">
-        <label class="form-label fw-bold">Building</label>
+        <label class="form-label fw-bold">Tòa Nhà</label>
         <select class="form-select" name="building_id" >
             <c:forEach items="${ dsbuilding }" var="building">
                 <option  value="${ building.id }">
@@ -24,7 +24,7 @@
         </select>
     </div>
     <div class="mb-3 col-6">
-        <label class="form-label fw-bold">Floor</label>
+        <label class="form-label fw-bold">Tầng</label>
         <select class="form-select" name="floor_id" >
             <c:forEach items="${ dsfloor }" var="dsfloor">
                 <option  value="${ dsfloor.id }">
@@ -35,16 +35,26 @@
     </div>
 
     <div class="mb-3 col-6">
-        <label class="form-label fw-bold">NameRoom</label>
+        <label class="form-label fw-bold">Căn Hộ</label>
         <input type="text" class="form-control" name="nameRoom">
     </div>
     <div class="mb-3 col-6">
-        <label class="form-label fw-bold">Acreage</label>
+        <label class="form-label fw-bold">Diện Tích</label>
         <input type="text" class="form-control" name="acreage">
     </div>
+
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Số Phòng Tắm</label>
+        <input type="text" class="form-control" name="bathroom">
+    </div>
+
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Số Phòng Ngủ</label>
+        <input type="text" class="form-control" name="bedroom">
+    </div>
     <div class="mt-3">
-        <button  class="btn btn-success">ADD</button>
-        <button type="reset" class="btn btn-primary">Reset</button>
+        <button  class="btn btn-success">Thêm</button>
+        <button type="reset" class="btn btn-primary">Làm Mới</button>
     </div>
 </form>
 <br>
