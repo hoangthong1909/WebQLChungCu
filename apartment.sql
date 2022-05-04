@@ -1,195 +1,128 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Apr 26, 2022 at 02:24 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+create table Customer
+(
+    id           int auto_increment
+        primary key,
+    nameCustomer varchar(50) charset utf8  not null,
+    phone        varchar(50) charset utf8  not null,
+    email        varchar(50) charset utf8  not null,
+    CMND         varchar(50)               not null,
+    status       bit                       not null,
+    sex          bit                       not null,
+    address      varchar(200) charset utf8 not null,
+    constraint Customer_CMND_uindex
+        unique (CMND),
+    constraint Customer_email_uindex
+        unique (email),
+    constraint Customer_phone_uindex
+        unique (phone)
+);
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+create table Typecontract
+(
+    id   int auto_increment
+        primary key,
+    name varchar(50) charset utf8 not null
+);
 
+create table users
+(
+    id           int auto_increment
+        primary key,
+    name         varchar(100) charset utf8 null,
+    email        varchar(100) charset utf8 not null,
+    passwordUser varchar(200) charset utf8 null,
+    numberPhone  varchar(20) charset utf8  null,
+    sex          int        default 0      null,
+    birthday     date                      null,
+    address      varchar(100) charset utf8 null,
+    avatar       varchar(50) charset utf8  null,
+    isAdmin      int        default 0      null,
+    status       tinyint(1) default 0      null,
+    constraint users_email_uindex
+        unique (email)
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+create table Building
+(
+    id            int auto_increment
+        primary key,
+    nameBuilding  varchar(100) charset utf8 null,
+    address       varchar(100) charset utf8 null,
+    idUser        int                       null,
+    status        int default 0             null,
+    dateCreate    date                      not null,
+    toilet        double                    not null,
+    security      double                    not null,
+    landscapeCare double                    not null,
+    work          double                    not null,
+    garbage       double                    not null,
+    constraint FK3uuviqwsmo10x3xmpcgraubjq
+        foreign key (idUser) references users (id)
+);
 
---
--- Database: `apartment`
---
+create table Floor
+(
+    id         int auto_increment
+        primary key,
+    nameFloor  varchar(10) charset utf8 null,
+    idBuilding int                      null,
+    dateCreate date                     not null,
+    status     bit                      not null,
+    constraint Floor_Building_id_fk
+        foreign key (idBuilding) references Building (id)
+);
 
--- --------------------------------------------------------
+create table Room
+(
+    id       int auto_increment
+        primary key,
+    nameRoom varchar(20) charset utf8 null,
+    idFloor  int                      null,
+    status   bit                      not null,
+    acreage  double                   not null,
+    bedroom  int                      not null,
+    bathroom int                      not null,
+    classify int                      not null,
+    constraint Room_Floor_id_fk
+        foreign key (idFloor) references Floor (id)
+);
 
---
--- Table structure for table `Building`
---
+create table contract
+(
+    id         int auto_increment
+        primary key,
+    idUser     int                      null,
+    dateCreate date                     null,
+    dateEnd    date                     null,
+    idRoom     int                      null,
+    price      double                   null,
+    status     bit                      not null,
+    name       varchar(50) charset utf8 not null,
+    type_id    int                      not null,
+    idCustomer int                      not null,
+    vehicle    int                      not null,
+    people     int                      not null,
+    constraint FKk2qvkl9pip618cohxx6x4j698
+        foreign key (type_id) references Typecontract (id),
+    constraint FKrfi3mi5up0sery6t61q3xfsk4
+        foreign key (idCustomer) references Customer (id),
+    constraint contract_Room_id_fk
+        foreign key (idRoom) references Room (id),
+    constraint contract_users_id_fk
+        foreign key (idUser) references users (id)
+);
 
-CREATE TABLE `Building` (
-  `id` int(11) NOT NULL,
-  `naemBuilding` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `idUser` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contract`
---
-
-CREATE TABLE `contract` (
-  `id` int(11) NOT NULL,
-  `idUser` int(11) DEFAULT NULL,
-  `dateCreate` date DEFAULT NULL,
-  `dateEnd` date DEFAULT NULL,
-  `idRoom` int(11) DEFAULT NULL,
-  `price` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Floor`
---
-
-CREATE TABLE `Floor` (
-  `id` int(11) NOT NULL,
-  `nameFloor` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
-  `idBuilding` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Room`
---
-
-CREATE TABLE `Room` (
-  `id` int(11) NOT NULL,
-  `nameRoom` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
-  `idFloor` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `email` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `passwordUser` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
-  `numberPhone` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
-  `sex` int(11) DEFAULT 0,
-  `birthday` date DEFAULT NULL,
-  `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `avatar` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `isAdmin` int(11) DEFAULT 0,
-  `status` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `Building`
---
-ALTER TABLE `Building`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contract`
---
-ALTER TABLE `contract`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `contract_users_id_fk` (`idUser`),
-  ADD KEY `contract_Room_id_fk` (`idRoom`);
-
---
--- Indexes for table `Floor`
---
-ALTER TABLE `Floor`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `Floor_Building_id_fk` (`idBuilding`);
-
---
--- Indexes for table `Room`
---
-ALTER TABLE `Room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `Room_Floor_id_fk` (`idFloor`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `Building`
---
-ALTER TABLE `Building`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `contract`
---
-ALTER TABLE `contract`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Floor`
---
-ALTER TABLE `Floor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Room`
---
-ALTER TABLE `Room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `contract`
---
-ALTER TABLE `contract`
-  ADD CONSTRAINT `contract_Room_id_fk` FOREIGN KEY (`idRoom`) REFERENCES `Room` (`id`),
-  ADD CONSTRAINT `contract_users_id_fk` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `Floor`
---
-ALTER TABLE `Floor`
-  ADD CONSTRAINT `Floor_Building_id_fk` FOREIGN KEY (`idBuilding`) REFERENCES `Building` (`id`);
-
---
--- Constraints for table `Room`
---
-ALTER TABLE `Room`
-  ADD CONSTRAINT `Room_Floor_id_fk` FOREIGN KEY (`idFloor`) REFERENCES `Floor` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+create table Receipt
+(
+    id          int auto_increment
+        primary key,
+    service     double not null,
+    parking     double not null,
+    electricity double null,
+    water       double not null,
+    contract_id int    not null,
+    status      bit    not null,
+    internet    double not null,
+    constraint FKqamgev7clvo0rxd5rrc1g7p1h
+        foreign key (contract_id) references contract (id)
+);

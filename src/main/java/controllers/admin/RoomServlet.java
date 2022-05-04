@@ -74,6 +74,7 @@ public class RoomServlet extends HttpServlet {
             RoomEntity entity = this.roomDao.findByID(id);
             BeanUtils.populate(entity, request.getParameterMap());
             entity.setIdFloor(floor);
+            entity.setClassify(entity.getClassify());
             this.roomDao.update(entity);
             session.setAttribute("message", "Cập Nhật Thành Công");
             response.sendRedirect("/Room");
@@ -129,6 +130,7 @@ public class RoomServlet extends HttpServlet {
             FloorEntity floor = this.floorDao.findByID(id);
             entity.setIdFloor(floor);
             entity.setStatus(true);
+            entity.setClassify(0);
             this.roomDao.create(entity);
             session.setAttribute("message", "Thêm Mới Thành Công");
             list.add(entity);

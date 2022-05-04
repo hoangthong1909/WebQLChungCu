@@ -39,6 +39,7 @@
         <th scope="col">Phí Hoạt Động,Bảo Dưỡng Tiện Ích Chung</th>
         <th scope="col">Phí Thu Dọn Rác</th>
         <th scope="col">Tổng Tiền</th>
+        <th scope="col"><button data-toggle="modal" data-target="#ba" class="btn btn-success">Xuất Excel</button></th>
         <th></th>
         <th></th>
     </tr>
@@ -93,5 +94,28 @@
     </tbody>
 </table>
 <%--</c:if>--%>
+<div id="ba" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Xác nhận</h3>
+                <button type="button" class="btn-close" data-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <form action="exportExcelBuilding" method="post">
+            <div class="modal-body">
+                <label class="form-label fw-bold">Nhập Tên File</label>
+                <input type="text" class="form-control" name="nameExcelBuilding">
+            </div>
+            <div class="modal-footer">
+                    <button class="btn btn-danger">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        aria-label="Close">Hủy
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 

@@ -2,6 +2,7 @@ package Dao;
 
 import JPAUtils.JpaUtil;
 import entitys.Customer;
+import entitys.FloorEntity;
 import entitys.UsersEntity;
 
 import javax.persistence.EntityManager;
@@ -52,6 +53,38 @@ public class customerDao {
     public Customer findByID(int id) {
         Customer entity = this.em.find(Customer.class, id);
         return entity;
+    }
+
+    public Customer findByCMND(String cmnd){
+        String jpql="SELECT obj from Customer obj where obj.cmnd= :cmnd ";
+        TypedQuery<Customer> query =this.em.createQuery(jpql,Customer.class);
+        query.setParameter("cmnd",cmnd);
+        List<Customer> list =query.getResultList();
+        if (list.isEmpty()){
+            return null;
+        }
+        return list.get(0);
+    }
+
+    public Customer findByPhone(String phone){
+        String jpql="SELECT obj from Customer obj where obj.phone= :phone  ";
+        TypedQuery<Customer> query =this.em.createQuery(jpql,Customer.class);
+        query.setParameter("phone",phone);
+        List<Customer> list =query.getResultList();
+        if (list.isEmpty()){
+            return null;
+        }
+        return list.get(0);
+    }
+    public Customer findByEmail(String email){
+        String jpql="SELECT obj from Customer obj where obj.email= :email  ";
+        TypedQuery<Customer> query =this.em.createQuery(jpql,Customer.class);
+        query.setParameter("email",email);
+        List<Customer> list =query.getResultList();
+        if (list.isEmpty()){
+            return null;
+        }
+        return list.get(0);
     }
 
 }

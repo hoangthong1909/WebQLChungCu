@@ -18,13 +18,20 @@
         <input type="text" class="form-control" name="name">
     </div>
     <div class="mb-3 col-6">
-        <label class="form-label fw-bold">ID Customer</label>
-        <input type="text" class="form-control" name="customer_id">
+        <label class="form-label fw-bold">Số CMND Khách Hàng</label>
+        <input type="text" class="form-control" name="cmnd">
     </div>
     <input type="hidden" value="${sessionScope.user.id}">
+
     <div class="mb-3 col-6">
-        <label class="form-label fw-bold">IDRoom</label>
-        <input type="text" class="form-control" name="room_id">
+        <label class="form-label fw-bold">Mã Căn Hộ</label>
+        <select class="form-select" name="room_id" >
+            <c:forEach items="${ dsroom }" var="room">
+                <option  value="${ room.id }">
+                        CH${ room.id}
+                </option>
+            </c:forEach>
+        </select>
     </div>
     <div class="mb-3 col-6">
         <label class="form-label fw-bold">Loại Hợp Đồng</label>
@@ -37,8 +44,16 @@
         </select>
     </div>
     <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Số Phương Tiện</label>
+        <input type="text" class="form-control" name="vehicle">
+    </div>
+    <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Số Người</label>
+        <input type="text" class="form-control" name="people">
+    </div>
+    <div class="mb-3 col-6">
         <label class="form-label fw-bold">Ngày Kết Thúc</label>
-        <input type="date" class="form-control" name="dateEnd">
+        <input type="date"  class="form-control" name="dateEnd">
     </div>
 
     <div class="mb-3 col-6">

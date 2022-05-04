@@ -46,6 +46,12 @@ public class roomDao {
         List<RoomEntity> list=query.getResultList();
         return list;
     }
+    public List<RoomEntity> empty(){
+        String jpql="SELECT obj from RoomEntity obj where obj.status=true AND obj.classify=0";
+        TypedQuery<RoomEntity> query =this.em.createQuery(jpql,RoomEntity.class);
+        List<RoomEntity> list=query.getResultList();
+        return list;
+    }
     public RoomEntity findByID(int id){
         RoomEntity entity=this.em.find(RoomEntity.class,id);
         return entity;

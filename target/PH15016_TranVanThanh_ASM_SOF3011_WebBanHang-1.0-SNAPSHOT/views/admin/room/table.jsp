@@ -34,6 +34,7 @@
         <th scope="col">Diện Tích</th>
         <th scope="col">Số Phòng Tắm</th>
         <th scope="col">Số Phòng Ngủ</th>
+        <th scope="col">Trạng Thái</th>
         <th></th>
         <th></th>
     </tr>
@@ -47,6 +48,14 @@
             <td><fmt:formatNumber value="${room.acreage}" pattern="#,###"/> m<sup>2</sup></td>
             <td>${room.bathroom}</td>
             <td>${room.bedroom}</td>
+            <td>
+                <c:choose>
+                    <c:when test="${room.classify==0}"><span style="color: red">Chưa Sử Dụng</span></c:when>
+                    <c:when test="${room.classify==1}"><span style="color: #0a58ca">Đã Cho Thuê</span></c:when>
+                    <c:when test="${room.classify==2}"><span style="color: green">Đã Bán</span></c:when>
+                    <c:otherwise>-</c:otherwise>
+                </c:choose>
+            </td>
             <td>
                 <form action="/editRoom" method="post">
                     <input type="hidden" value="${room.id}" name="id">

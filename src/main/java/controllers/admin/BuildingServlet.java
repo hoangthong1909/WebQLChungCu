@@ -3,10 +3,15 @@ package controllers.admin;
 import DAO.UserDao;
 import Dao.buildingDao;
 import Dao.floorDao;
+import JPAUtils.ExcelUtils;
 import entitys.BuildingEntity;
 import entitys.FloorEntity;
 import entitys.UsersEntity;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +19,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet({"/Building", "/storeBuilding", "/updateBuilding", "/deleteBuilding", "/editBuilding"})
+@WebServlet({"/Building", "/storeBuilding", "/updateBuilding", "/deleteBuilding", "/editBuilding","/exportExcelBuilding"})
 public class BuildingServlet extends HttpServlet {
     private buildingDao dao;
     private UserDao userDao;
@@ -54,6 +61,8 @@ public class BuildingServlet extends HttpServlet {
             this.edit(request, response);
         } else if (uri.contains("deleteBuilding")) {
             this.delete(request, response);
+        } else if (uri.contains("exportExcelBuilding")) {
+            this.exportExcel(request, response);
         }
     }
 
@@ -131,6 +140,20 @@ public class BuildingServlet extends HttpServlet {
             response.sendRedirect("/Building");
         } catch (Exception e) {
             session.setAttribute("error", "Thêm Mới Thất Bại");
+            response.sendRedirect("/Building");
+            e.printStackTrace();
+        }
+    }
+
+    protected void exportExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session=request.getSession();
+        String nameExcel=request.getParameter("nameExcelBuilding");
+        try {
+            new ExcelUtils().xuatExcelBuiding(nameExcel);
+            session.setAttribute("message","Xuất Excel Thành Công");
+            response.sendRedirect("/Building");
+        } catch (IOException e) {
+            session.setAttribute("error","Xuất Excel Thất Bại");
             response.sendRedirect("/Building");
             e.printStackTrace();
         }

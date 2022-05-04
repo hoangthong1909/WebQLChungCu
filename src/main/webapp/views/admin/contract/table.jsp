@@ -30,14 +30,14 @@
     <thead>
     <tr>
         <th scope="col">STT</th>
-        <th scope="col">ID Contract</th>
-        <th scope="col">Creator</th>
-        <th scope="col">Name Customer</th>
-        <th scope="col">Name Contract</th>
-        <th scope="col">Type Contract</th>
-        <th scope="col">Date Create</th>
-        <th scope="col">Date End</th>
-        <th scope="col">Total</th>
+        <th scope="col">Mã Hợp Đồng</th>
+        <th scope="col">Tên Hợp Đồng</th>
+        <th scope="col">Loại Hợp Đồng</th>
+        <th scope="col">Người Tạo</th>
+        <th scope="col">Tên Khách Hàng</th>
+        <th scope="col">Ngày Tạo</th>
+        <th scope="col">Ngày Kết Thúc</th>
+        <th scope="col">Tổng Tiền</th>
         <th></th>
         <th></th>
         <th></th>
@@ -48,22 +48,22 @@
     <c:forEach items="${list}" var="contract" varStatus="status">
         <tr>
             <td>#${status.count}</td>
-            <td>CH${contract.id}</td>
-            <td>${contract.idUser.name}</td>
-            <td>${contract.idCustomer.nameCustomer}</td>
+            <td>HD${contract.id}</td>
             <td>${contract.name}</td>
+            <td>${contract.idUser.name}</td>
             <td>${contract.idtype.name}</td>
-            <td>${contract.dateCreate}</td>
-            <td>${contract.dateEnd}</td>
-            <td><fmt:formatNumber value="${contract.price}" pattern="#,###"/> VND</td>
+            <td>${contract.idCustomer.nameCustomer}</td>
+            <td><fmt:formatDate value="${contract.dateCreate}" pattern="dd/MM/yyyy"/></td>
+            <td><fmt:formatDate value="${contract.dateEnd}" pattern="dd/MM/yyyy"/></td>
+            <td style="color: red"><fmt:formatNumber value="${contract.price}" pattern="#,###"/> VND</td>
             <td>
                 <form action="/editContract" method="post">
                     <input type="hidden" value="${contract.id}" name="id">
-                    <button class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Cập Nhật</button>
                 </form>
             </td>
             <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#c${contract.id}">Delete</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#c${contract.id}">Xóa</button>
             </td>
             <td>
             <form action="showDetail" method="post">
@@ -80,12 +80,12 @@
                                     aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <h5>Bạn muốn xóa  ${contract.name} ?</h5>
+                            <h5>Bạn muốn xóa Mã Hợp Đồng HD${contract.id} ?</h5>
                         </div>
                         <div class="modal-footer">
                             <form action="/deleteContract" method="post">
                                 <input type="hidden" value="${contract.id}" name="id">
-                                <button class="btn btn-danger">Delete</button>
+                                <button class="btn btn-danger">Xóa</button>
                             </form>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                     aria-label="Close">Hủy

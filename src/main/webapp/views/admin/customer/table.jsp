@@ -26,6 +26,7 @@
         <th scope="col">Giới Tính</th>
         <th scope="col">Điện Thoại</th>
         <th scope="col">Email</th>
+        <th scope="col">Địa Chỉ</th>
         <th></th>
         <th></th>
     </tr>
@@ -44,6 +45,7 @@
             </td>
             <td>${customer.phone}</td>
             <td>${customer.email}</td>
+            <td>${customer.address}</td>
 
             <td>
                 <form action="editCustomer" method="post">

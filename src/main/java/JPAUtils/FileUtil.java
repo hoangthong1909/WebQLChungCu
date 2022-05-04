@@ -7,7 +7,7 @@ import java.io.IOException;
 public class FileUtil {
 
     public static File saveFileUpload(String nameFolder, Part part) {
-        File folderUpload = new File("/PH15021_HoangTrungThong_31032002/src/main/webapp/images/" + nameFolder);
+        File folderUpload = new File("/src/main/webapp/images/" + nameFolder);
         if (!folderUpload.exists()) {
             folderUpload.mkdirs();
         }

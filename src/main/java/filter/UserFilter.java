@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName="filter1",urlPatterns = {"/Contract", "/storeContract", "/updateContract", "/deleteContract", "/editContract","/showDetail","/storeCustomer", "/editCustomer", "/updateCustomer", "/deleteCustomer", "/Customer"})
+@WebFilter(filterName="filter1",urlPatterns = {"/Contract", "/storeContract", "/updateContract", "/deleteContract", "/editContract","/showDetail","/storeCustomer", "/editCustomer", "/updateCustomer", "/deleteCustomer", "/Customer","/Receipt", "/storeReceipt", "/updateReceipt", "/deleteReceipt", "/editReceipt","/exportExcelReceipt"})
 public class UserFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }

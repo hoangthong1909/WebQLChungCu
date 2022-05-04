@@ -95,8 +95,23 @@ public class CustomerServlet extends HttpServlet {
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Customer entity = new Customer();
+        String cmnd=request.getParameter("cmnd");
+        String phone=request.getParameter("phone");
+        String email=request.getParameter("email");
+        Customer customer=this.dao.findByCMND(cmnd);
+        Customer customer1=this.dao.findByPhone(phone);
+        Customer customer2=this.dao.findByEmail(email);
         List<Customer> list = new ArrayList<>();
         try {
+            if (customer!=null){
+                session.setAttribute("error","Số CMND Khách Hàng Đã Tồn Tại");
+                if (customer1!=null){
+                    session.setAttribute("error","Số Điện Thoại Khách Hàng Đã Tồn Tại");
+                }if (customer2!=null){
+                    session.setAttribute("error","Email Khách Hàng Đã Tồn Tại");
+                }
+                response.sendRedirect("/Customer");
+            }else {
             BeanUtils.populate(entity, request.getParameterMap());
             entity.setStatus(true);
             this.dao.create(entity);
@@ -106,6 +121,7 @@ public class CustomerServlet extends HttpServlet {
             List<Customer> all = this.dao.all();
             request.setAttribute("ds", all);
             response.sendRedirect("/Customer");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/Customer");

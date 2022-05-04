@@ -21,7 +21,7 @@
     </div>
     <c:remove var="message" scope="session"/>
 </c:if>
-<table class="table table-success table-striped">
+<table class="table table-danger table-striped">
     <thead>
     <tr>
         <th scope="col">Ảnh</th>

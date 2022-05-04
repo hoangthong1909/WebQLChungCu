@@ -119,6 +119,19 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Khách Hàng</span></a>
         </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Hóa Đơn , Chi Phí Hàng Tháng
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/Receipt">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Hóa Đơn </span></a>
+            </li>
         </c:if>
         <c:if test="${sessionScope.user.isAdmin==0}">
         <hr class="sidebar-divider">
@@ -151,6 +164,20 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Khách Hàng</span></a>
         </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Hóa Đơn , Chi Phí Hàng Tháng
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/Receipt">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Hóa Đơn </span></a>
+            </li>
+            <hr class="sidebar-divider">
         </c:if>
 
         <!-- Divider -->

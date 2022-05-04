@@ -26,6 +26,10 @@
         <input type="email" class="form-control" name="email" value="${customer.email}">
     </div>
     <div class="mb-3 col-6">
+        <label class="form-label fw-bold">Địa Chỉ</label>
+        <input type="text" class="form-control" name="address" value="${customer.address}">
+    </div>
+    <div class="mb-3 col-6">
         <label class="form-label fw-bold">Số CMND</label>
         <input type="text" class="form-control" name="cmnd" value="${customer.cmnd}">
     </div>

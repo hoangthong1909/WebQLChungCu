@@ -11,6 +11,7 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
+<%--                        thay hinh o bg-login-images /css/sb-admin2.css Ctrl +F tim bg-login-image thay url thanh anh mong muon--%>
                         <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                         <div class="col-lg-6">
                             <div class="p-5">

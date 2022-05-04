@@ -16,6 +16,9 @@ public class Customer {
     @Column(name = "phone", nullable = false, length = 50)
     private String phone;
 
+    @Column(name = "address", nullable = false, length = 50)
+    private String address;
+
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
@@ -92,5 +95,13 @@ public class Customer {
 
     public void setContractList(List<ContractEntity> contractList) {
         this.contractList = contractList;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

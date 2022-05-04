@@ -32,6 +32,9 @@ public class RoomEntity {
     @Basic
     @Column(name = "bathroom")
     private int bathroom;
+    @Basic
+    @Column(name = "classify")
+    private int classify;
 
     @Basic
     @Column(name = "status")
@@ -41,6 +44,14 @@ public class RoomEntity {
     private FloorEntity idFloor;
     @OneToMany(mappedBy = "idRoom")
     private List<ContractEntity> contractList;
+
+    public int getClassify() {
+        return classify;
+    }
+
+    public void setClassify(int classify) {
+        this.classify = classify;
+    }
 
     public int getId() {
         return id;

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,6 +28,12 @@ public class ContractEntity {
     @Column(name = "dateCreate")
     private Date dateCreate;
     @Basic
+    @Column(name = "vehicle")
+    private int vehicle;
+    @Basic
+    @Column(name = "people")
+    private int people;
+    @Basic
     @Column(name = "dateEnd")
     private Date dateEnd;
     @Basic
@@ -43,6 +51,9 @@ public class ContractEntity {
     @Basic
     @Column(name = "price")
     private Double price;
+
+    @OneToMany(mappedBy = "contract_id")
+    private List<ReceiptEntity> receiptList;
 
     public int getId() {
         return id;
@@ -122,5 +133,29 @@ public class ContractEntity {
 
     public void setIdCustomer(Customer idCustomer) {
         this.idCustomer = idCustomer;
+    }
+
+    public int getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(int vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public int getPeople() {
+        return people;
+    }
+
+    public void setPeople(int people) {
+        this.people = people;
+    }
+
+    public List<ReceiptEntity> getReceiptList() {
+        return receiptList;
+    }
+
+    public void setReceiptList(List<ReceiptEntity> receiptList) {
+        this.receiptList = receiptList;
     }
 }

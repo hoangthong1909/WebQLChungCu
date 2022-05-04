@@ -1,6 +1,7 @@
-package DAO;
+package Dao;
 
 import JPAUtils.JpaUtil;
+import entitys.Customer;
 import entitys.UsersEntity;
 
 import javax.persistence.EntityManager;
@@ -62,6 +63,16 @@ public class UserDao {
             return null;
         }
         return result.get(0);
+    }
+    public UsersEntity findByPhone(String phone){
+        String jpql="SELECT obj from UsersEntity obj where obj.numberPhone= :phone ";
+        TypedQuery<UsersEntity> query =this.em.createQuery(jpql,UsersEntity.class);
+        query.setParameter("phone",phone);
+        List<UsersEntity> list =query.getResultList();
+        if (list.isEmpty()){
+            return null;
+        }
+        return list.get(0);
     }
 
 }

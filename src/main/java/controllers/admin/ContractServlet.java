@@ -54,8 +54,14 @@ public class ContractServlet extends HttpServlet {
     }
 
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         List<TypecontractEntity> dstype=this.typeDao.all();
         request.setAttribute("dstype",dstype);
+        List<RoomEntity> dsroom=this.roomDao.empty();
+        request.setAttribute("dsroom",dsroom);
+        if (dsroom.isEmpty()){
+            session.setAttribute("error","Không còn căn hộ nào trống");
+        }
         List<ContractEntity> list = this.contractDao.all();
         request.setAttribute("list", list);
         request.setAttribute("view", "/views/admin/contract/create.jsp");
@@ -65,12 +71,12 @@ public class ContractServlet extends HttpServlet {
 
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int id1= Integer.parseInt(request.getParameter("customer_id"));
+        String cmnd= request.getParameter("cmnd");
         int id= Integer.parseInt(request.getParameter("id"));
         int id2= Integer.parseInt(request.getParameter("room_id"));
         int id3= Integer.parseInt(request.getParameter("type_id"));
         try {
-            Customer customer = this.customerDao.findByID(id1);
+            Customer customer = this.customerDao.findByCMND(cmnd);
             RoomEntity room = this.roomDao.findByID(id2);
             TypecontractEntity type = this.typeDao.findByID(id3);
             ContractEntity entity=this.contractDao.findByID(id);
@@ -112,6 +118,9 @@ public class ContractServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         ContractEntity entity = this.contractDao.findByID(id);
         request.setAttribute("contract", entity);
+        List<RoomEntity> dsroom=this.roomDao.empty();
+        dsroom.add(entity.getIdRoom());
+        request.setAttribute("dsroom",dsroom);
         List<ContractEntity> list = this.contractDao.all();
         request.setAttribute("list", list);
         request.setAttribute("view", "/views/admin/contract/edit.jsp");
@@ -128,26 +137,28 @@ public class ContractServlet extends HttpServlet {
 
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int id1= Integer.parseInt(request.getParameter("customer_id"));
+        String cmnd= request.getParameter("cmnd");
         int id2= Integer.parseInt(request.getParameter("room_id"));
         int id3= Integer.parseInt(request.getParameter("type_id"));
         ContractEntity entity = new ContractEntity();
         List<ContractEntity> list = new ArrayList<>();
         try {
             BeanUtils.populate(entity, request.getParameterMap());
-            Customer customer=this.customerDao.findByID(id1);
+            Customer customer=this.customerDao.findByCMND(cmnd);
             RoomEntity room=this.roomDao.findByID(id2);
             if (customer==null){
-                session.setAttribute("error","Khách Hàng Không Tồn Tại");
+                session.setAttribute("error","Số CMND Khách Hàng Không Tồn Tại");
                 response.sendRedirect("/Contract");
                 return;
-            }else {
-                if (room==null){
-                    session.setAttribute("error","Phòng Không Tồn Tại");
-                    response.sendRedirect("/Contract");
-                    return;
                 }else {
                     TypecontractEntity type= this.typeDao.findByID(id3);
+                    if (type.getId()==1){
+                        room.setClassify(1);
+                        this.roomDao.update(room);
+                    }else if (type.getId()==2){
+                        room.setClassify(2);
+                        this.roomDao.update(room);
+                    }
                     UsersEntity user = (UsersEntity) session.getAttribute("user");
                     entity.setIdUser(user);
                     entity.setIdtype(type);
@@ -164,8 +175,6 @@ public class ContractServlet extends HttpServlet {
                     request.setAttribute("list", all);
                     response.sendRedirect("/Contract");
                 }
-            }
-
         } catch (Exception e) {
             session.setAttribute("error", "Thêm Mới Thất Bại");
             response.sendRedirect("/Contract");

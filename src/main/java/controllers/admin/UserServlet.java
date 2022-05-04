@@ -1,6 +1,6 @@
 package controllers.admin;
 
-import DAO.UserDao;
+import Dao.UserDao;
 import JPAUtils.EncryptUtil;
 import JPAUtils.FileUtil;
 import entitys.UsersEntity;
@@ -107,25 +107,41 @@ public class UserServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UsersEntity entity = new UsersEntity();
         List<UsersEntity> list = new ArrayList<>();
+        String phone=request.getParameter("numberPhone");
+        UsersEntity users=this.dao.findByPhone(phone);
+        String email=request.getParameter("email");
+        UsersEntity users1=this.dao.findByEmail(email);
         try {
-            BeanUtils.populate(entity, request.getParameterMap());
-            System.out.println(entity.getBirthday());
-            File file = FileUtil.saveFileUpload("avatar", request.getPart("avatar"));
-            if (file.getName().equals("avatar")) {
-                entity.setAvatar("undraw_profile.svg");
-            } else {
-                entity.setAvatar(file.getName());
+            if (users!=null){
+                session.setAttribute("error","Số Điện Thoại Đã Tồn Tại");
+                response.sendRedirect("/User");
+                return;
+            }else {
+                if (users1 != null) {
+                    session.setAttribute("error", "Email Đã Tồn Tại");
+                    response.sendRedirect("/User");
+                    return;
+                } else {
+                    BeanUtils.populate(entity, request.getParameterMap());
+                    System.out.println(entity.getBirthday());
+                    File file = FileUtil.saveFileUpload("avatar", request.getPart("avatar"));
+                    if (file.getName().equals("avatar")) {
+                        entity.setAvatar("undraw_profile.svg");
+                    } else {
+                        entity.setAvatar(file.getName());
+                    }
+                    String encrypted = EncryptUtil.encrypt(request.getParameter("passwordUser"));
+                    entity.setStatus((byte) 1);
+                    entity.setPasswordUser(encrypted);
+                    this.dao.create(entity);
+                    session.setAttribute("message", "Thêm Mới Thành Công");
+                    list.add(entity);
+                    request.setAttribute("ds", list);
+                    List<UsersEntity> all = this.dao.all();
+                    request.setAttribute("ds", all);
+                    response.sendRedirect("/User");
+                }
             }
-            String encrypted = EncryptUtil.encrypt(request.getParameter("passwordUser"));
-            entity.setStatus((byte) 1);
-            entity.setPasswordUser(encrypted);
-            this.dao.create(entity);
-            session.setAttribute("message", "Thêm Mới Thành Công");
-            list.add(entity);
-            request.setAttribute("ds", list);
-            List<UsersEntity> all = this.dao.all();
-            request.setAttribute("ds", all);
-            response.sendRedirect("/User");
         } catch (Exception e) {
             e.printStackTrace();
             session.setAttribute("error", "Thêm Mới Thất Bại");
