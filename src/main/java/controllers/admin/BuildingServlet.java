@@ -1,6 +1,5 @@
 package controllers.admin;
-
-import DAO.UserDao;
+import Dao.UserDao;
 import Dao.buildingDao;
 import Dao.floorDao;
 import JPAUtils.ExcelUtils;

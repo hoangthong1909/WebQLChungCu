@@ -1,6 +1,6 @@
 package controllers.user;
 
-import DAO.UserDao;
+import Dao.UserDao;
 import JPAUtils.EncryptUtil;
 import entitys.UsersEntity;
 
