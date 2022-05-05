@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="PH15016_TranVanThanh_ASM_SOF3011_WebBanHang-1.0-SNAPSHOT.war">
+    <root id="archive" name="WEB_QLCHUNGCU-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="quanLyChungCu:war exploded" />
     </root>
   </artifact>

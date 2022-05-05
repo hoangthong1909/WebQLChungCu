@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>PH15016_TranVanThanh_ASM_SOF3011_WebBanHang</artifactId>
+    <artifactId>WEB_QLCHUNGCU</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>PH15016_TranVanThanh_ASM_SOF3011_WebBanHang</name>
+    <name>WEB_QLCHUNGCU</name>
     <packaging>war</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

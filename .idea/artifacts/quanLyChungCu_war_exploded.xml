@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="quanLyChungCu:war exploded">
-    <output-path>$PROJECT_DIR$/target/PH15016_TranVanThanh_ASM_SOF3011_WebBanHang-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/WEB_QLCHUNGCU-1.0-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
@@ -53,7 +53,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/PH15016_TranVanThanh_ASM_SOF3011_WebBanHang-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/WEB_QLCHUNGCU-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="quanLyChungCu/web/Web" />
     </root>

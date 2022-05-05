@@ -58,7 +58,5 @@ public class LoginServlet extends HttpServlet {
     protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-        request.setAttribute("view", "/views/account/info/login.jsp");
-        request.getRequestDispatcher("/views/account/account.jsp").forward(request, response);
     }
 }

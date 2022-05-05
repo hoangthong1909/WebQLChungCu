@@ -1,0 +1,27 @@
+APACHE TOMCAT Server
+IntellJ IDE code JAVA
+Mysql
+XAMPP
+
+--framework :
+hibernate
+JPA
+
+ha`m
+persist : them
+merge : cap nhat
+User
+store : them moi
+update : Cap nhat thong tin user
+create : hien thi form de nguoi dung nhap du lieu va show ra tat ca User
+edit : goi den ham sua hien thi tat ca thong tin cua nguoi dung len form
+delete : thay doi trang thai cua User(Xoa' Me`m)
+
+-- Xuat Excel
+Thu vien APache Poi
+Excelutils
+-- Ma Hoa
+Thu Vien mindrot
+EncryptUtil
+-- Upload Anh
+FileUtils
